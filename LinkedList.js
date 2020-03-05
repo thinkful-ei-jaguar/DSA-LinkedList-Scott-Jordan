@@ -33,13 +33,11 @@ class LinkedList {
     }
   }
 
-  //insert
+  //insertAt
   // start at the head, and traverse to the insertion point 
   // create a new node 
   // attach pointer to the next node
-        
 
-  //insertAt
   //insertBefore
   insertBefore(item, insertPt) {
     if (this.head === null || this.head.value == insertPt)  {
@@ -60,6 +58,20 @@ class LinkedList {
   }
 
   //insertAfter
+  insertAfter(item , insertPt) {
+    if (this.head === null)  {
+      this.insertFirst(item);
+    } 
+
+    let currNode = this.head;
+    let previousNode = this.head;
+
+    while(currNode.value !== insertPt) {
+      previousNode = currNode;
+      currNode = currNode.next;
+    }
+    currNode.next = new _Node(item, currNode.next);
+  }
 
   find(item){
     //start at the head
@@ -128,9 +140,30 @@ function main() {
   SLL.insertBefore('Jordan', 'Tauhida');
   SLL.insertBefore('Scott', 'Jordan');
   SLL.insertBefore('Thinkful', 'Starbuck');
+  SLL.insertAfter('Kaiya', 'Starbuck');
 
   console.log(JSON.stringify(SLL), 'SLL after insert');
   return SLL;
 }
-let mainFunc = main();
-console.log(mainFunc);
+main();
+
+
+const display = () => {
+
+};
+
+const size = () => {
+
+};
+
+const isEmpty = () => {
+
+};
+
+const findPrevious = () => {
+
+};
+
+const findLast = () => {
+
+};
