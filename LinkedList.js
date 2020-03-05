@@ -64,13 +64,28 @@ class LinkedList {
     } 
 
     let currNode = this.head;
-    let previousNode = this.head;
 
     while(currNode.value !== insertPt) {
-      previousNode = currNode;
       currNode = currNode.next;
     }
     currNode.next = new _Node(item, currNode.next);
+  }
+
+  insertAt(item, position) {
+    if(position < 0) {
+      throw new Error('Error');
+    }
+    if(position === 0) {
+      this.insertFirst(item);
+    } else {
+      let currNode = this.head; //starting at the first node(beginning), and tracking as we traverse through
+      for(let i = 0; i < position - 1; i++) { //-1 is what we need to look for, the node in front
+        currNode = currNode.next; //at node just in front of position to insert
+      }
+      const newNode = new _Node(item, null);
+      newNode.next = currNode.next;
+      currNode.next = newNode;
+    }
   }
 
   find(item){
@@ -135,22 +150,36 @@ function main() {
   SLL.insertFirst('Helo');
   SLL.insertFirst('Husker');
   SLL.insertFirst('Starbuck');
-  SLL.insertLast('Tauhida');
-  // SLL.remove('squirrel'); // output: 'Item not found'
-  SLL.insertBefore('Jordan', 'Tauhida');
-  SLL.insertBefore('Scott', 'Jordan');
-  SLL.insertBefore('Thinkful', 'Starbuck');
-  SLL.insertAfter('Kaiya', 'Starbuck');
+  // SLL.insertLast('Tauhida');
+  // // SLL.remove('squirrel'); // output: 'Item not found'
+  // SLL.insertBefore('Jordan', 'Tauhida');
+  // SLL.insertBefore('Scott', 'Jordan');
+  // SLL.insertBefore('Thinkful', 'Starbuck');
+  // SLL.insertAfter('Kaiya', 'Starbuck');
+  // SLL.insertAfter('Zura', 'Starbuck');
+  // SLL.insertAfter('Kiba', 'Starbuck');
+  // SLL.insertAt('Bananas', 4);
+  // SLL.insertAt('Apples', 5);
+  // SLL.insertAt('Applez', 1);
+  // SLL.insertAt('Bananaz', 2);
+  // SLL.insertAt('Oranges', 1);
 
-  console.log(JSON.stringify(SLL), 'SLL after insert');
+  // console.log(JSON.stringify(SLL, null, 2), 'SLL after insert');
   return SLL;
 }
-main();
+const SLL = main();
 
 
-const display = () => {
-
+const display = (LL) => { //should display the linked list
+  let currNode = LL.head; 
+  while (!(currNode.next == null)) { 
+      // console.log(currNode.next); 
+      currNode = currNode.next; 
+  } 
+  return (JSON.stringify(LL))
 };
+console.log(display(SLL));
+
 
 const size = () => {
 
