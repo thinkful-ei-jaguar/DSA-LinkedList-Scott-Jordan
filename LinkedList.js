@@ -41,6 +41,24 @@ class LinkedList {
 
   //insertAt
   //insertBefore
+  insertBefore(item, insertPt) {
+    if (this.head === null || this.head.value == insertPt)  {
+      this.insertFirst(item);
+    } else {
+      // Start at the head
+      let currNode = this.head;
+      // Keep track of previous node
+      let previousNode = this.head;
+
+      while (currNode.value !== insertPt) {
+      // Save the previous node 
+        previousNode = currNode;
+        currNode = currNode.next;
+      } 
+      previousNode.next = new _Node(item, currNode);
+    }
+  }
+
   //insertAfter
 
   find(item){
@@ -93,5 +111,26 @@ class LinkedList {
   }
 }
 
-let ll = new LinkedList();
-console.log(ll);
+// let ll = new LinkedList();
+// console.log(ll, 'll');
+
+function main() {
+  let SLL = new LinkedList();
+  console.log(SLL, 'SLL');
+
+  SLL.insertFirst('Apollo');
+  SLL.insertFirst('Boomer');
+  SLL.insertFirst('Helo');
+  SLL.insertFirst('Husker');
+  SLL.insertFirst('Starbuck');
+  SLL.insertLast('Tauhida');
+  // SLL.remove('squirrel'); // output: 'Item not found'
+  SLL.insertBefore('Jordan', 'Tauhida');
+  SLL.insertBefore('Scott', 'Jordan');
+  SLL.insertBefore('Thinkful', 'Starbuck');
+
+  console.log(JSON.stringify(SLL), 'SLL after insert');
+  return SLL;
+}
+let mainFunc = main();
+console.log(mainFunc);
