@@ -15,14 +15,14 @@ class _Node {
 }
 
 function insertInSortedOrder(sortdlist, item) {
-  if (sortdlist.head === null || item.) {
-    sortdlist.head = new _Node(item);
+  if (sortdlist.head === null || item < sortdlist.head.value) {
+    sortdlist.head = new _Node(item, sortdlist.head);
   }
 
   let current = sortdlist.head;
   let previous = sortdlist.head;
 
-  while(current.value !== null && current.value < item) {
+  while(current !== null && current.value < item) {
     previous = current;
     current = current.next;
   }

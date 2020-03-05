@@ -173,26 +173,62 @@ const SLL = main();
 const display = (LL) => { //should display the linked list
   let currNode = LL.head; 
   while (!(currNode.next == null)) { 
-      // console.log(currNode.next); 
-      currNode = currNode.next; 
+    // console.log(currNode.next); 
+    currNode = currNode.next; 
   } 
-  return (JSON.stringify(LL))
+  return (JSON.stringify(LL));
 };
-console.log(display(SLL));
+// console.log(display(SLL));
 
 
-const size = () => {
-
+const size = (LL) => {
+  let currNode = LL.head;
+  let counter = 1;
+  while(currNode.next !== null) {
+    currNode = currNode.next;
+    counter++;
+  }
+  return counter;
 };
+// console.log(size(SLL));
 
-const isEmpty = () => {
 
+const isEmpty = (LL) => {
+  console.log(LL);
+  if (LL.head === null) {
+    return true;
+  }
+  return false;
 };
+let emptyLL  = new LinkedList();
+// console.log(isEmpty(emptyLL));
 
-const findPrevious = () => {
+const findPrevious = (LL, position) => {
+  console.log(LL.head, 'head');
+  if(position < 0) {
+    throw new Error('Error');
+  }
 
+  let node = LL.head;
+
+  for (let i=0; i <= position - 1; i++) {
+    if(node == null) {
+      return 'Node doesn\'t exist';
+      
+    } else {
+      node = node.next;
+    }
+  }
+  return node;
 };
+// console.log(findPrevious(SLL, 2));
 
-const findLast = () => {
 
+const findLast = (LL) => {
+  let currNode = LL.head;
+  while(currNode.next !== null) {
+    currNode = currNode.next;
+  }
+  return currNode;
 };
+// console.log(findLast(SLL));
