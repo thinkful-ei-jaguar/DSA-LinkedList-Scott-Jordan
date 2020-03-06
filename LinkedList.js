@@ -150,6 +150,7 @@ function main() {
   SLL.insertFirst('Helo');
   SLL.insertFirst('Husker');
   SLL.insertFirst('Starbuck');
+  SLL.insertFirst('Boomer');
   // SLL.insertLast('Tauhida');
   // // SLL.remove('squirrel'); // output: 'Item not found'
   // SLL.insertBefore('Jordan', 'Tauhida');
@@ -232,3 +233,56 @@ const findLast = (LL) => {
   return currNode;
 };
 // console.log(findLast(SLL));
+
+
+
+//#4 
+    //this function eliminates duplicates
+
+    //time complexity O(n^2)
+
+    function WhatDoesThisProgramDo(lst) {
+      let current = lst.head;
+      while (current !== null) {
+          let newNode = current;
+          while (newNode.next !== null) {
+              if (newNode.next.value === current.value) {
+                  newNode.next = newNode.next.next;
+              }
+              else {
+                  newNode = newNode.next;
+              }
+          }
+          current = current.next;
+      }
+      return JSON.stringify(lst);
+  }
+
+  // console.log(WhatDoesThisProgramDo(SLL));
+
+
+//#5 Reverse a list
+
+//all pointers should point backward
+
+function Reverse(list) {
+  let current = list.head; 
+  let previous;
+  let temp;
+
+  while (current) { 
+    temp = current.next;
+    current.next = previous;
+    previous = current;
+    current = temp;
+  }
+  return JSON.stringify(previous);
+}
+
+console.log(Reverse(SLL));
+
+
+//#6
+
+
+
